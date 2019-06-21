@@ -60,7 +60,7 @@
                      <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/in"
+                        android:text="STOCK INCOME"
                         android:padding="5dp"
                         android:textColor="@color/text_white"
                         android:textSize="20sp"/>
@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/out"
+                    android:text="SALES INCOME"
                     android:textSize="20sp"
                     android:textColor="@color/text_white"
                     android:padding="5dp"/>

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements DialogFragment.On
     private add_item addItem = new add_item();
     DialogFragment dialogFragment;
     ScanBarcode scanBarcode;
-
+    private static String TAG = "SUSU";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -95,13 +95,13 @@ public class MainActivity extends AppCompatActivity implements DialogFragment.On
             return;
         }
 
-        currentFragment = Transaction.newInstance();//creating an instace of Transaction fragment
+        currentFragment = Transaction.newInstance();//creating an instance of Transaction fragment
         switchFragments(currentFragment); // calling method to load the fragment container.
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation); // initialising bottom navigation
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener); // adding selection listener to the bottom navigation
 
-        scan_btn = findViewById(R.id.transact); //Iitialising btn button
+        scan_btn = findViewById(R.id.transact); //Initialising btn button
         TransactionHelper.transactionBTN = scan_btn;
         final Activity activity = this;
 
@@ -117,10 +117,28 @@ public class MainActivity extends AppCompatActivity implements DialogFragment.On
 
                 for (Map.Entry<String, transaction_item> entry : selectedItems.entrySet()) {
 
+
+
+                    String value = entry.getValue().getPrice();
+                            value =value.replace("K","");
+                            value = value.replace(" ","");
+                            //TODO MOVE THESE TO HERE
+                    int requestedQ = convertStringInt(entry.getValue().getQuantity());
+                    int item_price = convertStringInt(value);
+                    //TODO ADD THESE LINES
+
+                    //TODO CALCULATE PRICES FOR AN ITEM
+                    int total_amount = requestedQ * item_price;
+
+
+
                     pending_transaction_items.add(new pending_transaction_item(
                             entry.getValue().getDbId(),
                             entry.getValue().getName(),
-                            entry.getValue().getPrice(),
+
+                            total_amount+"",
+
+                            //entry.getValue().getPrice(),
                             entry.getValue().getBarcode(),
                             "",
                             entry.getValue().toString().equals(""),
@@ -130,7 +148,11 @@ public class MainActivity extends AppCompatActivity implements DialogFragment.On
                             )
 
                     );
-                    String value = entry.getValue().getPrice();
+
+                    total.add(total_amount);
+
+
+                    /*String value = entry.getValue().getPrice();
                     value = value.replace("K","");
                     value = value.replace(" ","");
                     try{
@@ -139,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements DialogFragment.On
 
                     }catch (Exception e){
                         Toast.makeText(getApplicationContext(), "invalid price", Toast.LENGTH_LONG).show();
-                    }
+                    }*/
                 }
 
                 int sum = 0;
@@ -158,9 +180,22 @@ public class MainActivity extends AppCompatActivity implements DialogFragment.On
                 dialogFragment.show(fm, "transaction");
 
             }
+
         });
 
         support_methods.setFm(getSupportFragmentManager());
+    }
+
+
+    private int convertStringInt(String str_num){
+        int num = 0;
+        try{
+            num = Integer.parseInt(str_num);
+        }
+        catch(Exception e){
+            Log.i(TAG, "Invalid Price");
+        }
+        return num;
     }
 
 //    processing results produced by a barcode scanner

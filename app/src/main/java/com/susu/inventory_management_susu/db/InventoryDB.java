@@ -11,7 +11,8 @@ import java.util.Map;
 
 import androidx.annotation.Nullable;
 
-public class InventoryDB extends SQLiteOpenHelper {
+public class
+InventoryDB extends SQLiteOpenHelper {
 
     private static String DB_NAME = "inventory";
     private static String inventory_table = "inventory_data";

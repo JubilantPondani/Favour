@@ -6,49 +6,57 @@
     tools:context=".Item_quantity_dialog"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Sales Transaction"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <EditText
-        android:id="@+id/input_quantity"
-        android:layout_width="0dp"
-        android:layout_weight=".7"
-        android:inputType="number"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/input_margin"
-        android:padding="@dimen/input_padding"
-        android:hint="@string/quantity"/>
-    <!-- TODO: Update blank fragment layout -->
+            android:id="@+id/input_quantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/input_margin"
+            android:layout_weight=".7"
+            android:hint="Enter quantity"
+            android:inputType="number"
+            android:padding="@dimen/input_padding" />
+        <!-- TODO: Update blank fragment layout -->
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
 
         <Button
             android:id="@+id/accept_action"
-            android:padding="@dimen/input_padding"
             android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:text="OK"
             android:layout_height="wrap_content"
-            />
+            android:layout_weight=".5"
+            android:padding="@dimen/input_padding"
+            android:text="OK" />
 
         <Button
             android:id="@+id/cancel_action"
-            android:padding="@dimen/input_padding"
             android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:text="CANCEL"
             android:layout_height="wrap_content"
-            />
+            android:layout_weight=".5"
+            android:padding="@dimen/input_padding"
+            android:text="CANCEL" />
     </LinearLayout>
-3
 
 
 </LinearLayout>
